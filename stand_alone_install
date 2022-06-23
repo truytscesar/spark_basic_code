@@ -1,0 +1,32 @@
+# Source: https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/
+sudo apt update && sudo apt -y full-upgrade
+[ -f /var/run/reboot-required ] && sudo reboot -f
+sudo apt install curl mlocate default-jdk -y
+java -version
+wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+tar xvf spark-3.2.1-bin-hadoop3.2.tgz
+sudo mv spark-3.2.1-bin-hadoop3.2/ /opt/spark 
+vim ~/.bashrc
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+source ~/.bashrc
+start-master.sh 
+sudo ss -tunelp | grep 8080
+start-slave.sh spark://ubuntu:7077
+sudo updatedb
+locate start-slave.sh
+# /opt/spark/bin/spark-shell (SCALA)
+/opt/spark/bin/pyspark #(PYTHON)
+
+
+'''
+Show workers: 
+ps aux | grep spark
+
+Stop workes
+for pid in $(jps | grep Worker | awk "{print $1}"); do kill -9 $pid; done
+
+
+#SPARK_HOME/sbin/stop-slave.sh
+#SPARK_HOME/sbin/stop-master.sh
+'''
