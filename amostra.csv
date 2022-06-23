@@ -1,0 +1,7 @@
+paciente;idade;sexo;peso;diagnostico;internacao;obito
+1;40;m;50;covid;1;0
+2;45;f;60;covid;0;0
+3;50;m;70;pnm;1;0
+4;55;f;80;sinusite;0;0
+5;60;m;90;gripe;0;1
+6;65;f;100;gripe;1;0
